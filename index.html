@@ -162,12 +162,11 @@
 <section id="form" class="bg-white py-16 px-6 max-w-2xl mx-auto" data-sr>
   <h2 class="text-3xl font-semibold mb-6 text-center">Agende uma conversa com nosso time</h2>
   
-    <textarea name="Mensagem" placeholder="Mensagem (opcional)" class="w-full border border-gray-300 p-3 rounded" rows="4"></textarea>
     <input type="hidden" name="_next" value="https://andersonpaivaorbita.github.io/aceleradora-espirito-hub/obrigado.html">
     <input type="hidden" name="_subject" value="Novo lead do site Espírito Growth">
     <input type="hidden" name="_template" value="box">
     <input type="hidden" name="_captcha" value="false">
-    <input type="text" name="Nome" placeholder="Nome" class="w-full border border-gray-300 p-3 rounded" required>
+    <input type="text" name="Nome" placeholder="Nome" class="w-full border border-gray-300 p-3 rounded mb-4" required>
     <input type="email" name="Email" placeholder="E-mail" class="w-full border border-gray-300 p-3 rounded" required>
     <input type="text" name="Empresa" placeholder="Empresa" class="w-full border border-gray-300 p-3 rounded">
     <input type="tel" name="Telefone" placeholder="Telefone/WhatsApp" class="w-full border border-gray-300 p-3 rounded">
@@ -176,7 +175,8 @@
       <option>Sou uma startup</option>
       <option>Sou gestor público / edital</option>
     </select>
-    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition transform hover:scale-105">Agendar apresentação</button>
+    <textarea name="Mensagem adicional" placeholder="Mensagem adicional (opcional)" class="w-full border border-gray-300 p-3 rounded mb-4" rows="4"></textarea>
+    
   </form>
 </section>
 

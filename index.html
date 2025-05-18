@@ -41,7 +41,7 @@
         </svg>
       </button>
     </div>
-    <nav id="nav-links" class="hidden md:flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6 text-sm font-medium absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent p-4 md:p-0 shadow md:shadow-none">
+    <nav id="nav-links" class="hidden flex-col md:flex md:flex-row transition-all duration-300 ease-in-out space-y-4 md:space-y-0 md:space-x-6 text-sm font-medium absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent p-4 md:p-0 shadow md:shadow-none">
       <a href="#beneficios" class="text-gray-700 hover:text-blue-600">Benefícios</a>
       <a href="#objeções" class="text-gray-700 hover:text-blue-600">Dúvidas</a>
       <a href="#sobre" class="text-gray-700 hover:text-blue-600">Sobre</a>
@@ -52,14 +52,22 @@
     </nav>
   </div>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuToggle = document.getElementById("menu-toggle");
-      const navLinks = document.getElementById("nav-links");
-      menuToggle.addEventListener("click", function () {
-        navLinks.classList.toggle("hidden");
-      });
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    const menuIcon = menuToggle.querySelector("svg");
+
+    // ícone de menu e ícone de X
+    const menuSvg = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
+    const closeSvg = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+
+    menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("hidden");
+      navLinks.classList.toggle("animate-fade-in");
+      menuIcon.outerHTML = navLinks.classList.contains("hidden") ? menuSvg : closeSvg;
     });
-  </script>
+  });
+</script>
 </header>
 
   <!-- HERO -->

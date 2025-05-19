@@ -19,19 +19,21 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menu-toggle");
+  let menuIconDefault = `
+    <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
+      <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path>
+    </svg>`;
+  let menuIconClose = `
+    <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
+      <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M6 18L18 6M6 6l12 12\"></path>
+    </svg>`;
   const navLinks = document.getElementById("nav-links");
   let menuOpen = false;
   menuToggle.addEventListener("click", function () {
     navLinks.classList.toggle("hidden");
     navLinks.classList.toggle("flex");
     navLinks.classList.toggle("animate-fade-in");
-    menuToggle.innerHTML = menuOpen ? `
-      <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
-        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path>
-      </svg>` : `
-      <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
-        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M6 18L18 6M6 6l12 12\"></path>
-      </svg>`;
+    menuToggle.innerHTML = !menuOpen ? `` : ``;
     menuOpen = !menuOpen;
   });
 
@@ -46,10 +48,7 @@
       // Fechar menu
       navLinks.classList.add('hidden');
       navLinks.classList.remove('flex');
-      menuToggle.innerHTML = `
-        <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
-          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path>
-        </svg>`;
+      menuToggle.innerHTML = menuIconDefault;
       menuOpen = false;
     });
   });

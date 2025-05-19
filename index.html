@@ -26,61 +26,49 @@
     </div>
     <div class="md:hidden">
       <button id="menu-toggle" class="text-gray-700 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
     </div>
-    <nav id="nav-links" class="hidden flex-col md:flex md:flex-row fixed inset-0 top-16 z-50 w-full bg-white md:static md:w-auto md:bg-transparent space-y-4 md:space-y-0 md:space-x-6 text-sm font-medium px-6 py-4 md:p-0 shadow md:shadow-none transition-all duration-300 ease-in-out">
-      <a href="#beneficios" class="text-gray-700 hover:text-blue-600">Benefícios</a>
-      <a href="#objeções" class="text-gray-700 hover:text-blue-600">Dúvidas</a>
-      <a href="#sobre" class="text-gray-700 hover:text-blue-600">Sobre</a>
-      <a href="#oque" class="text-gray-700 hover:text-blue-600">O que fazemos</a>
-      <a href="#pacotes" class="text-gray-700 hover:text-blue-600">Pacotes de Serviço</a>
-      <a href="#form" class="text-gray-700 hover:text-blue-600">Público-alvo</a>
-      <a href="#form" class="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700">Agendar apresentação</a>
+    <nav id="nav-links" class="hidden md:flex flex-col md:flex-row md:space-x-6 text-sm font-medium md:static absolute top-full left-0 w-full bg-white md:bg-transparent p-4 md:p-0 shadow md:shadow-none z-50">
+      <a href="#beneficios" class="block text-gray-700 hover:text-blue-600 mb-2 md:mb-0">Benefícios</a>
+      <a href="#objeções" class="block text-gray-700 hover:text-blue-600 mb-2 md:mb-0">Dúvidas</a>
+      <a href="#sobre" class="block text-gray-700 hover:text-blue-600 mb-2 md:mb-0">Sobre</a>
+      <a href="#oque" class="block text-gray-700 hover:text-blue-600 mb-2 md:mb-0">O que fazemos</a>
+      <a href="#pacotes" class="block text-gray-700 hover:text-blue-600 mb-2 md:mb-0">Pacotes de Serviço</a>
+      <a href="#form" class="block text-gray-700 hover:text-blue-600 mb-2 md:mb-0">Público-alvo</a>
+      <a href="#form" class="block bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700">Agendar apresentação</a>
     </nav>
   </div>
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.getElementById("nav-links");
-    let menuOpen = false;
-    menuToggle.addEventListener("click", function () {
-      const menuIcon = menuToggle.querySelector("svg");
-      navLinks.classList.toggle("hidden");
-      navLinks.classList.toggle("flex");
-      navLinks.classList.toggle("animate-fade-in");
-      menuToggle.innerHTML = menuOpen ? `
-        <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
-          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path>
-        </svg>` : `
-        <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
-          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M6 18L18 6M6 6l12 12\"></path>
-        </svg>`;
-      menuOpen = !menuOpen;
-    });
-  });
-    // fechar menu ao clicar em um link e rolar suavemente
-    document.querySelectorAll('#nav-links a').forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-        // fechar menu
-        navLinks.classList.add('hidden');
-        navLinks.classList.remove('flex');
-        menuToggle.innerHTML = `
-          <svg class=\"w-6 h-6\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\">
-            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M4 6h16M4 12h16M4 18h16\"></path>
-          </svg>`;
-        menuOpen = false;
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuToggle = document.getElementById("menu-toggle");
+      const navLinks = document.getElementById("nav-links");
+      const iconMenu = document.getElementById("icon-menu");
+      let menuOpen = false;
+
+      menuToggle.addEventListener("click", function () {
+        menuOpen = !menuOpen;
+        navLinks.classList.toggle("hidden");
+        iconMenu.innerHTML = menuOpen
+          ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />'
+          : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+      });
+
+      // Rolar suavemente e fechar menu ao clicar
+      document.querySelectorAll('#nav-links a').forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+          navLinks.classList.add('hidden');
+          iconMenu.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+          menuOpen = false;
+        });
       });
     });
-  });
-</script>
+  </script>
 </header>
 
   <!-- HERO -->
